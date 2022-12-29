@@ -48,6 +48,30 @@ e.g.
   "tags": "always,sunny,in,philadelphia"
 }
 ```
+### Creating notes
+Notes can be updated by calling the endpoint
+
+`localhost:8080/api/v1/note/:noteId` using `PUT`
+
+it expects a body of type
+
+```
+{
+    title: string
+    body: string
+    tags: string
+}
+```
+
+e.g.
+
+```json
+{
+  "title": "Frank's memoir",
+  "body": "When I'm dead, just throw me in the trash",
+  "tags": "always,sunny,in,philadelphia"
+} 
+```
 
 ### Deleting notes
 Notes can be soft deleted and hard deleted
