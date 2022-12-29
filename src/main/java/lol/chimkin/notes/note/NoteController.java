@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,9 +36,14 @@ public class NoteController {
     return noteService.getNotes();
   }
 
+  @PutMapping(path = "{noteId}")
+  public void update(@PathVariable("noteId") UUID noteId, @RequestBody NoteRequest note) {
+    noteService.updateNote(noteId, note.title, note.content, note.tags);
+  }
+
   @PostMapping
-  public Note create(@RequestBody CreateNoteRequest body) {
-    return noteService.createNote(body.title, body.body, body.tags);
+  public Note create(@RequestBody NoteRequest note) {
+    return noteService.createNote(note.title, note.content, note.tags);
   }
 
   @DeleteMapping(path = "{noteId}")
@@ -53,9 +59,9 @@ public class NoteController {
   @NoArgsConstructor
   @AllArgsConstructor
   @Getter
-  static class CreateNoteRequest {
+  static class NoteRequest {
     private String title;
-    private String body;
+    private String content;
     private String tags;
   }
 

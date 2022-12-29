@@ -13,6 +13,7 @@ Simple backend for note-taking, lets see where I take this
 - [x] Note creation
 - [x] Note listing
 - [x] Note deletion
+- [x] Note updating
 - [ ] Test coverage
 - [ ] Pagination
 - [ ] Proper HTTP errors

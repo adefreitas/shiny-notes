@@ -37,4 +37,13 @@ public class NoteService {
         .orElseThrow(() -> new IllegalArgumentException("Cant soft delete note with id " + noteId + "does not exists"));
     note.setDeletedAt(LocalDate.now());
   }
+
+  @Transactional
+  public void updateNote(UUID noteId, String title, String content, String tags) {
+    Note note = noteRepository.findById(noteId)
+        .orElseThrow(() -> new IllegalArgumentException("Cant soft delete note with id " + noteId + "does not exists"));
+    note.setTitle(title);
+    note.setContent(content);
+    note.setTags(tags);
+  }
 }
