@@ -12,12 +12,13 @@ Simple backend for note-taking, lets see where I take this
 ## TO-DO
 - [x] Note creation
 - [x] Note listing
-- [ ] Note deletion
+- [x] Note deletion
 - [ ] Test coverage
 - [ ] Pagination
+- [ ] Proper HTTP errors
+- [ ] Frontend
 - [ ] User authentication
 - [ ] Filtering notes by user
-- [ ] Frontend
 
 ## API documentation
 Have not been bothered creating swagger docs yet so for now
@@ -47,7 +48,18 @@ e.g.
 }
 ```
 
+### Deleting notes
+Notes can be soft deleted and hard deleted
+
+#### Soft delete
+Notes can be soft deleted by calling the endpoint `localhost:8080/api/v1/note/:noteId` using`DELETE`
+
+#### Hard delete
+Soft deleted notes can be hard deleted by calling the endpoint `localhost:8080/api/v1/note` using`DELETE` 
+
 ### Listing notes
+
+#### Not-deleted notes
 You can list the notes by calling the endpoint
 
 `localhost:8080/api/v1/note` using `GET`
@@ -87,3 +99,8 @@ e.g.
   }
 ]
 ```
+
+#### Soft deleted notes
+You can list the soft deleted notes by calling the same endpoint with a URL param `soft_deleted` set to true
+
+`localhost:8080/api/v1/note?soft_deleted=true` using `GET`
