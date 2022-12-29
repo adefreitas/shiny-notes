@@ -1,7 +1,8 @@
 package lol.chimkin.notes.note;
 
 import jakarta.transaction.Transactional;
-import java.time.LocalDate;
+import java.time.Instant;
+import java.time.LocalTime;
 import java.util.List;
 
 import java.util.UUID;
@@ -25,7 +26,7 @@ public class NoteService {
   }
 
   public Note createNote(String title, String content, String tags) {
-    return noteRepository.save(new Note(title, content, LocalDate.now(), tags));
+    return noteRepository.save(new Note(title, content, Instant.now().toEpochMilli(), Instant.now().toEpochMilli(), tags));
   }
 
   public void hardDelete() {
@@ -36,7 +37,7 @@ public class NoteService {
   public void softDelete(UUID noteId) {
     Note note = noteRepository.findById(noteId)
         .orElseThrow(() -> new NotFoundException(noteId));
-    note.setDeletedAt(LocalDate.now());
+    note.setDeletedAt(Instant.now().toEpochMilli());
   }
 
   @Transactional

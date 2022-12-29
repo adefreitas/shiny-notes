@@ -5,8 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Transient;
-import jakarta.validation.constraints.NotEmpty;
-import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,9 +38,10 @@ public class Note {
   @NonNull
   private String content;
   @NonNull
-  private LocalDate createdAt;
-  private LocalDate updatedAt;
-  private LocalDate deletedAt;
+  private Long createdAt;
+  @NonNull
+  private Long updatedAt;
+  private Long deletedAt;
   @NonNull
   private String tags;
   @Transient
