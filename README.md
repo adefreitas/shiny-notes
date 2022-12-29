@@ -9,6 +9,14 @@ Simple backend for note-taking, lets see where I take this
 1. Start the DB by running `docker-compose up`
 2. Start the project! I prefer to use intelliJ and just running it from there
 
+## TO-DO
+- [x] Note creation
+- [x] Note listing
+- [ ] Note deletion
+- [ ] Pagination
+- [ ] User authentication
+- [ ] Filtering notes by user
+- [ ] Frontend
 
 ## API documentation
 Have not been bothered creating swagger docs yet so for now
