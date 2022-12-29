@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Transient;
+import jakarta.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;

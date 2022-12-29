@@ -1,5 +1,8 @@
 package lol.chimkin.notes.note;
 
+import jakarta.annotation.Nullable;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
 import java.util.List;
 
 import java.util.Optional;
@@ -8,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -37,12 +42,13 @@ public class NoteController {
   }
 
   @PutMapping(path = "{noteId}")
-  public void update(@PathVariable("noteId") UUID noteId, @RequestBody NoteRequest note) {
+  public void update(@PathVariable("noteId") UUID noteId, @Valid @RequestBody NoteRequest note) {
     noteService.updateNote(noteId, note.title, note.content, note.tags);
   }
 
+  @ResponseStatus(HttpStatus.CREATED)
   @PostMapping
-  public Note create(@RequestBody NoteRequest note) {
+  public Note create(@Valid @RequestBody NoteRequest note) {
     return noteService.createNote(note.title, note.content, note.tags);
   }
 
@@ -59,9 +65,15 @@ public class NoteController {
   @NoArgsConstructor
   @AllArgsConstructor
   @Getter
-  static class NoteRequest {
+  public static class NoteRequest {
+    @Nullable
+    @NotEmpty(message = "Title is required")
     private String title;
+    @Nullable
+    @NotEmpty(message = "Content is required")
     private String content;
+    @Nullable
+    @NotEmpty(message = "Tags are required")
     private String tags;
   }
 

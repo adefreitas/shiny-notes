@@ -10,16 +10,16 @@ Simple backend for note-taking, lets see where I take this
 2. Start the project! I prefer to use intelliJ and just running it from there
 
 ## TO-DO
-- [x] Note creation
-- [x] Note listing
-- [x] Note deletion
-- [x] Note updating
-- [ ] Test coverage
-- [ ] Pagination
-- [ ] Proper HTTP errors
-- [ ] Frontend
-- [ ] User authentication
-- [ ] Filtering notes by user
+- ✅ Note creation
+- ✅ Note listing
+- ✅ Note deletion
+- ✅ Note updating
+- ✅ Test coverage
+- ⬜️ Pagination
+- ✅ Proper HTTP errors
+- ⬜️ Frontend
+- ⬜️ User authentication
+- ⬜️ Filtering notes by user
 
 ## API documentation
 Have not been bothered creating swagger docs yet so for now

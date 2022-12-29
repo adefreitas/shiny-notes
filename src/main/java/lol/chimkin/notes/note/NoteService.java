@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import java.util.UUID;
+import lol.chimkin.notes.exceptions.NotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -34,14 +35,14 @@ public class NoteService {
   @Transactional
   public void softDelete(UUID noteId) {
     Note note = noteRepository.findById(noteId)
-        .orElseThrow(() -> new IllegalArgumentException("Cant soft delete note with id " + noteId + "does not exists"));
+        .orElseThrow(() -> new NotFoundException(noteId));
     note.setDeletedAt(LocalDate.now());
   }
 
   @Transactional
   public void updateNote(UUID noteId, String title, String content, String tags) {
     Note note = noteRepository.findById(noteId)
-        .orElseThrow(() -> new IllegalArgumentException("Cant soft delete note with id " + noteId + "does not exists"));
+        .orElseThrow(() -> new NotFoundException(noteId));
     note.setTitle(title);
     note.setContent(content);
     note.setTags(tags);
