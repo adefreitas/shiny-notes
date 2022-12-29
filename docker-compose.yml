@@ -1,0 +1,27 @@
+# services:
+#   db:
+#     image: mariadb
+#     container_name: notes-db
+#     environment:
+#       MARIADB_ROOT_PASSWORD: ""
+#       MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "true"
+#       MARIADB_DATABASE: "notes"
+#       MARIADB_USER: "notes"
+#       MARIADB_PASSWORD: "notes"
+#     ports:
+#       - 3326:3306
+
+services:
+  db:
+    image: postgres:15.1
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "root"
+      POSTGRES_USER: "root"
+      POSTGRES_DB: "notes"
+    ports:
+      - 5432:5432
+
+  adminer:
+    image: adminer
+    restart: always
